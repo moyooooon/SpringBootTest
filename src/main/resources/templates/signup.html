@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Sign Up</title>
+    <style type="text/css">
+        span {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div>
+        <h1>ユーザー登録画面</h1>
+    </div>
+    <form th:action="@{/signup}" method="post" th:object="${signupForm}">
+        <table>
+            <tr>
+                <th>ユーザーID</th>
+                <td>
+                    <div>
+                        <input type="text" th:field="*{userId}"/>
+                        <br><span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>パスワード</th>
+                <td>
+                    <div>
+                        <input type="text" th:field="*{password}"/>
+                        <br><span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>ユーザー名</th>
+                <td>
+                    <div>
+                        <input type="text" th:field="*{userName}"/>
+                        <br><span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>誕生日</th>
+                <td>
+                    <div>
+                        <input type="text" th:field="*{birthday}" placeholder="yyyy/MM/dd"/>
+                        <br><span th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>年齢</th>
+                <td>
+                    <div>
+                        <input type="text" th:field="*{age}"/>
+                        <br><span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>性別</th>
+                <td>
+                    <div>
+                        <div th:each="item:${radioSex}">
+                            <input type="radio" name="radioSex" th:text="${item.key}" th:value="${item.value}" th:field="*{sex}"></input>
+                            <br><span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <ul>
+            <li th:each="error:${#fields.detailedErrors()}">
+                <span th:text="${error.message}">Error message</span>
+            </li>
+        </ul>
+        <button type="submit">ユーザー登録</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"  media="all" />
+    <title>Login</title>
+</head>
+<body>
+
+<div class="form-wrapper">
+    <h1>おかえりなさい</h1>
+<h1 th:text="${userName}"></h1>
+<form method="post" th:action="@{/logout}">
+    <div class="button-panel">
+        <input type="submit" class="button" title="LOG OUT" value="logout">
+    </div>
+    <br>
+</form>
+
+</div>
+</body>
+</html>
